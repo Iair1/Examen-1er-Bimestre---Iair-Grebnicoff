@@ -18,7 +18,7 @@ public class mudanza : MonoBehaviour
     
     void Start()
     {
-        if(kilometrosARecorrer < 1 || kilosATransportar < 100 || kilosATransportar > 10000)
+        if(kilometrosARecorrer < 1 || kilosATransportar < 100 || kilosATransportar > capacidadCamion || kilosATransportar < 1)
         {
             Debug.Log("Cantidad de kilos o kilómetros inadecuadados, por favor, ingrese las unidades de nuevo");
         }
@@ -46,11 +46,12 @@ public class mudanza : MonoBehaviour
             {
                 precioTotal = (float)vehiculoPrecio * duracion;
             }
-            if(kmDeHoraExtra > 50)
+            if (kilometrosARecorrer > kmDeHoraExtra)
             {
-                precioTotal = precioTotal + (float)vehiculoPrecio; //como se cobra una hora extra, duracion=duracion+1
+                precioTotal = precioTotal + (float)vehiculoPrecio;
+                duracion = duracion + 1;
             }
-            Debug.Log("El precio total es " + duracion + " a " + vehiculoPrecio + ":");
+            Debug.Log("El precio total es " + duracion + " horas a " + vehiculoPrecio + " pesos por hora:");
             Debug.Log(precioTotal);
         }
     }
